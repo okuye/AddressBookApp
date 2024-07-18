@@ -13,7 +13,15 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class AddressBookService {
-    private String filePath = "AddressBook"; // Can be configured via application.properties
+    private String filePath;
+
+    public AddressBookService() {
+        this.filePath = "src/main/resources/AddressBook"; // default path for production
+    }
+
+    public AddressBookService(String filePath) {
+        this.filePath = filePath; // used for testing
+    }
 
     public long countMales() {
         AtomicLong maleCount = new AtomicLong();
