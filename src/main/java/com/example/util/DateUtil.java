@@ -1,4 +1,4 @@
-package com.example.AddressBookApp.util;
+package com.example.util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

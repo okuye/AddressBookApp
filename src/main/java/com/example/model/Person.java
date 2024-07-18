@@ -1,4 +1,4 @@
-package com.example.AddressBookApp.model;
+package com.example.model;
 
 import java.time.LocalDate;
 
