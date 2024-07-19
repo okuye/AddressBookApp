@@ -20,6 +20,6 @@ public class DateUtilTest {
         LocalDate date1 = LocalDate.of(1977, 3, 16);
         LocalDate date2 = LocalDate.of(1985, 1, 15);
         long daysBetween = DateUtil.daysBetween(date1, date2);
-        assertEquals(2862, daysBetween); // Adjust to match the correct difference
+        assertEquals(2862, daysBetween); // Corrected to match the actual difference
     }
 }

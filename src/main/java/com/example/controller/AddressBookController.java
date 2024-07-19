@@ -25,8 +25,7 @@ public class AddressBookController {
     }
 
     @GetMapping("/daysDifference")
-    public long getDaysDifference(@RequestParam String name1, @RequestParam String name2) {
+    public long getDaysDifference(@RequestParam("name1") String name1, @RequestParam("name2") String name2) {
         return service.getDaysDifference(name1, name2);
     }
 }
-

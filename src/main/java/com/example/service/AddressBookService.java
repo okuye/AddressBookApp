@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.model.Person;
 import com.example.util.DateUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -13,14 +14,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class AddressBookService {
-    private String filePath;
+    private final String filePath;
 
-    public AddressBookService() {
-        this.filePath = "src/main/resources/AddressBook"; // default path for production
-    }
-
-    public AddressBookService(String filePath) {
-        this.filePath = filePath; // used for testing
+    public AddressBookService(@Value("${addressbook.filepath}") String filePath) {
+        this.filePath = filePath; // used for both production and testing
     }
 
     public long countMales() {
@@ -91,3 +88,5 @@ public class AddressBookService {
         void process(String line);
     }
 }
+
+
