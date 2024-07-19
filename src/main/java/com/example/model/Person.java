@@ -17,9 +17,6 @@ public class Person {
         return name;
     }
 
-    public String getGender() {
-        return gender;
-    }
 
     public LocalDate getBirthDate() {
         return birthDate;
