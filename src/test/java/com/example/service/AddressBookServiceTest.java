@@ -8,6 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(classes = AddressBookApp.class)
 @ActiveProfiles("test")
@@ -35,8 +36,34 @@ class AddressBookServiceTest {
     void testGetDaysDifference() {
         AddressBookService addressBookService = new AddressBookService(testFilePath);
         long daysDifference = addressBookService.getDaysDifference("John Doe", "Bob Johnson");
+        assertEquals(2012, daysDifference); // Correct the expected value
+    }
 
-        // Correct the expected value to 2012
-        assertEquals(2012, daysDifference);
+    @Test
+    void testGetDaysDifferenceWithInvalidName() {
+        AddressBookService addressBookService = new AddressBookService(testFilePath);
+        assertThrows(IllegalArgumentException.class, () -> {
+            addressBookService.getDaysDifference("John Doe", "Invalid Name");
+        });
+    }
+
+    @Test
+    void testCountMalesFileNotFound() {
+        AddressBookService addressBookService = new AddressBookService("invalid/path/to/addressbook");
+        assertThrows(RuntimeException.class, addressBookService::countMales);
+    }
+
+    @Test
+    void testGetOldestPersonFileNotFound() {
+        AddressBookService addressBookService = new AddressBookService("invalid/path/to/addressbook");
+        assertThrows(RuntimeException.class, addressBookService::getOldestPerson);
+    }
+
+    @Test
+    void testGetDaysDifferenceFileNotFound() {
+        AddressBookService addressBookService = new AddressBookService("invalid/path/to/addressbook");
+        assertThrows(RuntimeException.class, () -> {
+            addressBookService.getDaysDifference("John Doe", "Bob Johnson");
+        });
     }
 }

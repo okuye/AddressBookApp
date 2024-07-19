@@ -66,10 +66,11 @@ public class AddressBookService {
             }
         });
 
-        if (birthDate1.get() != null && birthDate2.get() != null) {
-            return DateUtil.daysBetween(birthDate1.get(), birthDate2.get());
+        if (birthDate1.get() == null || birthDate2.get() == null) {
+            throw new IllegalArgumentException("One or both names not found in the address book.");
         }
-        return 0;
+
+        return DateUtil.daysBetween(birthDate1.get(), birthDate2.get());
     }
 
     private void processFile(Processor processor) {
@@ -79,7 +80,7 @@ public class AddressBookService {
                 processor.process(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to read the address book file.", e);
         }
     }
 
@@ -88,5 +89,3 @@ public class AddressBookService {
         void process(String line);
     }
 }
-
-
