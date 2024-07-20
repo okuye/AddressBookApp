@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.model.Gender;
 import com.example.model.Person;
 import com.example.util.DateUtil;
 import org.slf4j.Logger;
@@ -29,7 +30,8 @@ public class AddressBookService {
         AtomicLong maleCount = new AtomicLong();
         processFile(line -> {
             String[] details = line.split(", ");
-            if ("Male".equalsIgnoreCase(details[1])) {
+            Gender gender = Gender.fromString(details[1]);
+            if (gender == Gender.MALE) {
                 maleCount.incrementAndGet();
             }
         });
@@ -58,6 +60,7 @@ public class AddressBookService {
         return oldestName;
     }
 
+
     public long getDaysDifference(String name1, String name2) {
         AtomicReference<LocalDate> birthDate1 = new AtomicReference<>();
         AtomicReference<LocalDate> birthDate2 = new AtomicReference<>();
@@ -73,6 +76,10 @@ public class AddressBookService {
                 birthDate2.set(birthDate);
             }
         });
+
+        // Debugging logs
+        logger.debug("Processed names in address book: Name1 = {}, BirthDate1 = {}, Name2 = {}, BirthDate2 = {}",
+                name1, birthDate1.get(), name2, birthDate2.get());
 
         if (birthDate1.get() == null || birthDate2.get() == null) {
             String errorMessage = "One or both names not found in the address book.";

@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class Person {
     private String name;
-    private String gender;
+    private Gender gender;
     private LocalDate birthDate;
 
     public Person(String name, String gender, LocalDate birthDate) {
         this.name = name;
-        this.gender = gender;
+        this.gender = Gender.fromString(gender);
         this.birthDate = birthDate;
     }
 
@@ -17,6 +17,9 @@ public class Person {
         return name;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
 
     public LocalDate getBirthDate() {
         return birthDate;

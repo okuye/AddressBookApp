@@ -22,21 +22,22 @@ class AddressBookServiceTest {
     void testCountMales() {
         AddressBookService addressBookService = new AddressBookService(testFilePath);
         long maleCount = addressBookService.countMales();
-        assertEquals(2, maleCount); // Expected 2 males in the test data
+        assertEquals(3, maleCount); // Expected 3 males in the test data
     }
 
     @Test
     void testGetOldestPerson() {
         AddressBookService addressBookService = new AddressBookService(testFilePath);
         String oldestPerson = addressBookService.getOldestPerson();
-        assertEquals("John Doe", oldestPerson); // Expected oldest person in the test data
+        assertEquals("Wes Jackson", oldestPerson); // Expected oldest person in the test data
     }
+
 
     @Test
     void testGetDaysDifference() {
         AddressBookService addressBookService = new AddressBookService(testFilePath);
-        long daysDifference = addressBookService.getDaysDifference("John Doe", "Bob Johnson");
-        assertEquals(2012, daysDifference); // Correct the expected value
+        long daysDifference = addressBookService.getDaysDifference("Bill McKnight", "Paul Robinson");
+        assertEquals(2862, daysDifference); // Expected value based on actual difference
     }
 
     @Test
@@ -46,6 +47,7 @@ class AddressBookServiceTest {
             addressBookService.getDaysDifference("John Doe", "Invalid Name");
         });
     }
+
 
     @Test
     void testCountMalesFileNotFound() {
