@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import com.example.service.AddressBookService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,21 +13,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/addressbook")
 public class AddressBookController {
 
+    private static final Logger logger = LoggerFactory.getLogger(AddressBookController.class);
+
     @Autowired
     private AddressBookService service;
 
     @GetMapping("/countMales")
     public long countMales() {
+        logger.info("Received request to count males.");
         return service.countMales();
     }
 
     @GetMapping("/oldestPerson")
     public String getOldestPerson() {
+        logger.info("Received request to get the oldest person.");
         return service.getOldestPerson();
     }
 
     @GetMapping("/daysDifference")
     public long getDaysDifference(@RequestParam("name1") String name1, @RequestParam("name2") String name2) {
+        logger.info("Received request to get days difference between {} and {}.", name1, name2);
         return service.getDaysDifference(name1, name2);
     }
 }
