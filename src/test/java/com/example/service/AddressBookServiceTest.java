@@ -66,4 +66,10 @@ class AddressBookServiceTest {
             addressBookService.getDaysDifference("John Doe", "Bob Johnson");
         });
     }
+
+    @Test
+    void testInvalidDateFormat() {
+        AddressBookService addressBookService = new AddressBookService("src/test/resources/InvalidDateFormatAddressBook");
+        assertThrows(RuntimeException.class, addressBookService::countMales);
+    }
 }

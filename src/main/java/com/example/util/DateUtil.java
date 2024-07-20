@@ -13,7 +13,11 @@ public class DateUtil {
         try {
             return LocalDate.parse(date, DATE_FORMATTER_YYYY);
         } catch (DateTimeParseException e) {
-            return LocalDate.parse(date, DATE_FORMATTER_YY);
+            try {
+                return LocalDate.parse(date, DATE_FORMATTER_YY);
+            } catch (DateTimeParseException ex) {
+                throw new RuntimeException("Failed to parse date: " + date, ex);
+            }
         }
     }
 

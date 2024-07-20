@@ -17,7 +17,7 @@ public class AddressBookService {
     private final String filePath;
 
     public AddressBookService(@Value("${addressbook.filepath}") String filePath) {
-        this.filePath = filePath; // used for both production and testing
+        this.filePath = filePath;
     }
 
     public long countMales() {
