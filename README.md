@@ -1,5 +1,3 @@
-Your README structure is clear and comprehensive. Here is a slightly refined version to ensure consistency and readability:
-
 # AddressBookApp
 
 ## Overview
@@ -18,7 +16,10 @@ AddressBookApp/
 │   │   │           ├── AddressBookApp.java
 │   │   │           ├── controller/
 │   │   │           │   └── AddressBookController.java
+│   │   │           ├── exception/
+│   │   │           │   └── ApiExceptionHandler.java
 │   │   │           ├── model/
+│   │   │           │   ├── Gender.java
 │   │   │           │   └── Person.java
 │   │   │           ├── service/
 │   │   │           │   └── AddressBookService.java
@@ -30,8 +31,10 @@ AddressBookApp/
 │   └── java/
 │       └── com/
 │           └── example/
-│               ├── AddressBookServiceTest.java
-│               └── DateUtilTest.java
+│               ├── service/
+│               │   └── AddressBookServiceTest.java
+│               └── util/
+│                   └── DateUtilTest.java
 ├── AddressBook
 └── pom.xml
 ```
@@ -67,9 +70,9 @@ AddressBookApp/
 
 1. **Count Males**
 
-    - **URL:** `/addressbook/countMales`
-    - **Method:** `GET`
-    - **Description:** Returns the number of males in the address book.
+   - **URL:** `/addressbook/countMales`
+   - **Method:** `GET`
+   - **Description:** Returns the number of males in the address book.
 
    ```sh
    curl http://localhost:8080/addressbook/countMales
@@ -77,9 +80,9 @@ AddressBookApp/
 
 2. **Get Oldest Person**
 
-    - **URL:** `/addressbook/oldestPerson`
-    - **Method:** `GET`
-    - **Description:** Returns the name of the oldest person in the address book.
+   - **URL:** `/addressbook/oldestPerson`
+   - **Method:** `GET`
+   - **Description:** Returns the name of the oldest person in the address book.
 
    ```sh
    curl http://localhost:8080/addressbook/oldestPerson
@@ -87,10 +90,10 @@ AddressBookApp/
 
 3. **Get Days Difference Between Two People**
 
-    - **URL:** `/addressbook/daysDifference`
-    - **Method:** `GET`
-    - **Parameters:** `name1` (required), `name2` (required)
-    - **Description:** Returns the number of days difference between the birth dates of the two specified people.
+   - **URL:** `/addressbook/daysDifference`
+   - **Method:** `GET`
+   - **Parameters:** `name1` (required), `name2` (required)
+   - **Description:** Returns the number of days difference between the birth dates of the two specified people.
 
    ```sh
    curl "http://localhost:8080/addressbook/daysDifference?name1=Bill%20McKnight&name2=Paul%20Robinson"
@@ -118,6 +121,8 @@ mvn test
 
 - **AddressBookApp.java:** Main application class to bootstrap the Spring Boot application.
 - **AddressBookController.java:** Controller class to handle HTTP requests.
+- **ApiExceptionHandler.java:** Exception handler class for handling specific exceptions and returning appropriate HTTP responses.
+- **Gender.java:** Enum representing gender.
 - **Person.java:** Model class representing a person in the address book.
 - **AddressBookService.java:** Service class containing the business logic.
 - **DateUtil.java:** Utility class for date parsing and calculation.
